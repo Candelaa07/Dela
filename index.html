@@ -25,7 +25,7 @@ h1,h2{font-family:var(--serif);font-weight:300;line-height:1.1}
 .btn:hover{background:#6E231D;transform:translateY(-2px)}
 .reveal{opacity:1;transform:none}
 
-#hero{min-height:80svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:2.2rem}
+#hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:2.2rem}
 #hero h2{font-size:clamp(1.9rem,5vw,3rem);color:var(--ink)}
 #hero p{color:var(--soft);max-width:32em}
 
@@ -35,20 +35,32 @@ h1,h2{font-family:var(--serif);font-weight:300;line-height:1.1}
 .tabs button{all:unset;cursor:pointer;color:var(--soft);padding:.3rem 0;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
 .tabs button:hover{color:var(--ink)}
 .tabs button.on{color:var(--red);border-color:var(--red)}
+
 .stage{display:grid;grid-template-columns:1fr;gap:2.5rem}
+@media(min-width:820px){.stage{grid-template-columns:5fr 6fr;gap:6rem;align-items:start}.pic{position:sticky;top:2rem}}
+.pic{aspect-ratio:1/1;background:var(--sand);overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;width:100%}
+.cap{position:relative;z-index:2}
+.pic.has .cap{background:rgba(252,243,238,.92);padding:.9rem 1.2rem}
+.pic.has b{font-size:clamp(1.3rem,3vw,1.7rem)}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s}
+.pic:hover img{transform:scale(1.04)}
+.pic small{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);position:relative}
+.pic b{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--red);line-height:1.1;position:relative}
 
 ul{list-style:none;padding:0}
-li{border-top:1px solid var(--line);padding:1.3rem 0;display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+li{border-top:1px solid var(--line);padding:1.3rem 0;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;cursor:pointer}
 li:last-child{border-bottom:1px solid var(--line)}
-li .n{font-family:var(--serif);font-size:1.35rem;font-weight:300;transition:color .3s}
+li .n{font-family:var(--serif);font-size:1.5rem;font-weight:300;transition:color .3s,transform .4s}
+li:hover .n,li.on .n{color:var(--red);transform:translateX(6px)}
 li .d{display:block;font-size:.82rem;color:var(--soft)}
 
-.step{display:flex;align-items:center;gap:.6rem;align-self:center;flex:none}
+.step{display:flex;align-items:center;gap:.5rem;align-self:center;flex:none}
 .step button{all:unset;cursor:pointer;width:32px;height:32px;border-radius:50%;border:1px solid var(--red);color:var(--red);display:grid;place-items:center;font-size:1.1rem;line-height:1;transition:background .3s,color .3s,opacity .3s}
 .step button:hover{background:var(--red);color:var(--bg)}
 .step button:disabled{opacity:.3;cursor:not-allowed;background:none;color:var(--red)}
-.step .q{min-width:1.4ch;text-align:center;font-size:.95rem;font-weight:500}
+.step .q{min-width:1.4ch;text-align:center;font-size:.95rem}
 .agot{align-self:center;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);flex:none;background:var(--sand);padding:.3rem .6rem;border-radius:2px}
+li.out{cursor:default}
 li.out .n,li.out .d{opacity:.45}
 
 #cierre{background:var(--sand);text-align:center}
@@ -57,14 +69,27 @@ li.out .n,li.out .d{opacity:.45}
 footer{padding:3rem 1.5rem;text-align:center;font-size:.85rem;color:var(--soft)}
 footer b{display:block;font-family:var(--serif);font-weight:400;font-size:1.3rem;letter-spacing:.3em;color:var(--red)}
 
-.fab{position:fixed;right:1.2rem;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));background:var(--red);color:var(--bg);padding:.9rem 1.4rem;border-radius:999px;display:flex;align-items:center;gap:.7rem;text-decoration:none;box-shadow:0 4px 12px rgba(138,47,40,.25);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;transition:transform .3s;z-index:99}
-.fab:hover{transform:scale(1.04)}
+.fab{position:fixed;right:1.2rem;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));background:var(--red);color:var(--bg);padding:.9rem 1.4rem;border-radius:999px;display:flex;align-items:center;gap:.7rem;text-decoration:none;box-shadow:0 4px 12px rgba(138,47,40,.25);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:transform .3s;z-index:99}
+.fab:hover{transform:scale(1.07)}
 
 @media(max-width:819px){
  .tabs{flex-wrap:nowrap;overflow-x:auto;margin-inline:-1.5rem;padding-inline:1.5rem;scrollbar-width:none;gap:1.6rem}
  .tabs::-webkit-scrollbar{display:none}
  .tabs button{white-space:nowrap;padding:.7rem 0}
- li .n{font-size:1.2rem}
+ .pic{padding:.9rem}
+ li{padding:1.1rem 0}
+ li .n{font-size:1.35rem}
+ .step button{width:38px;height:38px}
+ .stage{gap:1.5rem}
+}
+@media(max-width:560px){
+ section{padding:5rem 1.25rem}
+ #hero{gap:1.8rem;padding-bottom:6rem}
+ .btn{display:block;width:100%;max-width:340px;margin-inline:auto;text-align:center;padding:1.2rem 1rem}
+ #explorar h2{margin-bottom:1.8rem}
+ .tabs{margin-bottom:2rem;margin-inline:-1.25rem;padding-inline:1.25rem}
+ footer{padding:3rem 1.25rem 6rem}
+ .fab{right:1rem}
 }
 </style>
 </head>
@@ -92,7 +117,19 @@ footer b{display:block;font-family:var(--serif);font-weight:400;font-size:1.3rem
     <button onclick="filtrarCat('tibetanos', this)">Tibetanos & Gold</button>
   </div>
 
-  <ul id="lista-productos"></ul>
+  <div class="stage">
+    <!-- VISOR DE IMÁGENES ORIGINAL -->
+    <div class="pic has" id="visor">
+      <img id="img-visor" src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80" alt="Sahumerio DELA">
+      <div class="cap">
+        <small id="cat-visor">Línea Destacada</small>
+        <b id="titulo-visor">Selecciona un aroma</b>
+      </div>
+    </div>
+
+    <!-- LISTA DE PRODUCTOS CON CONTADORES Y STOCK -->
+    <ul id="lista-productos"></ul>
+  </div>
 </section>
 
 <section id="cierre">
@@ -112,6 +149,17 @@ footer b{display:block;font-family:var(--serif);font-weight:400;font-size:1.3rem
 </a>
 
 <script>
+// IMÁGENES ESTÉTICAS DE REFERENCIA POR CATEGORÍA
+const imagenesCat = {
+  sagrada: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+  crystal: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80",
+  elixir: "https://images.unsplash.com/photo-1541944743827-e04aa6427c33?auto=format&fit=crop&w=800&q=80",
+  emociones: "https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=800&q=80",
+  masala: "https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=800&q=80",
+  organicos: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+  tibetanos: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80"
+};
+
 // LISTA DE PRODUCTOS CON STOCK MANUAL
 const productos = [
   { id: 1, nombre: "Sagrada Madre Natural Premium", aroma: "Hierbas Promo (Variados x5)", cat: "sagrada", stock: 5 },
@@ -142,7 +190,7 @@ const productos = [
   { id: 22, nombre: "Mystical Masala", aroma: "Serena Sensual", cat: "masala", stock: 1 },
 
   { id: 23, nombre: "Orgánicos x 8", aroma: "Lavanda Eucalipto", cat: "organicos", stock: 1 },
-  { id: 24, nombre: "Orgánicos x 8", aroma: "Lavanda Violeta", cat: "organicos", stock: 0 },
+  { id: 24, nombre: "Orgánicos x 8", aroma: "Lavanda Violeta", cat: "organicos", stock: 1 },
   { id: 25, nombre: "Orgánicos x 8", aroma: "Limón y Naranja", cat: "organicos", stock: 1 },
   { id: 26, nombre: "Orgánicos x 8", aroma: "Palo Santo", cat: "organicos", stock: 1 },
   { id: 27, nombre: "Orgánicos x 8", aroma: "Rosa y Vainilla", cat: "organicos", stock: 1 },
@@ -180,6 +228,8 @@ function renderProductos(categoria = 'todos') {
 
     if (sinStock) li.classList.add('out');
 
+    li.onmouseenter = () => actualizarVisor(p);
+
     li.innerHTML = `
       <div>
         <span class="n">${p.nombre}</span>
@@ -187,9 +237,9 @@ function renderProductos(categoria = 'todos') {
       </div>
       ${sinStock ? `<span class="agot">Agotado</span>` : `
         <div class="step">
-          <button onclick="cambiarCant(${p.id}, -1)" ${selec === 0 ? 'disabled' : ''}>-</button>
+          <button onclick="cambiarCant(event, ${p.id}, -1)" ${selec === 0 ? 'disabled' : ''}>-</button>
           <span class="q">${selec}</span>
-          <button onclick="cambiarCant(${p.id}, 1)" ${selec >= p.stock ? 'disabled' : ''}>+</button>
+          <button onclick="cambiarCant(event, ${p.id}, 1)" ${selec >= p.stock ? 'disabled' : ''}>+</button>
         </div>
       `}
     `;
@@ -197,7 +247,14 @@ function renderProductos(categoria = 'todos') {
   });
 }
 
-function cambiarCant(id, delta) {
+function actualizarVisor(p) {
+  document.getElementById('img-visor').src = imagenesCat[p.cat] || imagenesCat['sagrada'];
+  document.getElementById('cat-visor').innerText = p.nombre;
+  document.getElementById('titulo-visor').innerText = p.aroma;
+}
+
+function cambiarCant(e, id, delta) {
+  e.stopPropagation();
   const p = productos.find(item => item.id === id);
   if (!p) return;
 
